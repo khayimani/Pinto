@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const store = require('../lib/store');
-const connectorEngine = require('../connectors/connectorEngine');
+const connectorEngine = require('../connectors/registry');
 const transform = require('../lib/transform');
 
 

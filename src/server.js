@@ -1,17 +1,15 @@
 require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
-const authRoutes = require('./routes/authRoutes');
-const apiRoutes = require('./routes/apiRoutes');
-
-
 const app = express();
-app.use(bodyParser.json());
+const authRoutes = require('./routes/auth');
+const unifiedRoutes = require('./routes/unified');
 
+app.use(express.json());
 
 app.use('/auth', authRoutes);
-app.use('/v1', apiRoutes);
+app.use('/unified', unifiedRoutes);
 
+app.get('/', (req,res) => res.send('Pinto API Core is Active.'));
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Pinto dev server running on ${port}`));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log('Pinto running on port ${PORT}'));
